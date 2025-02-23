@@ -1,15 +1,13 @@
-import { View, Text } from 'react-native'
 import React from 'react'
-import { RouteType } from '../'
+import { NavigationContainer } from '@react-navigation/native'
+import RootNavigator from './src/router/rootNavigator'
 
-type Props = RouteType<'App'>
 
-
-const App: React.FC<Props> = ({ navigation, route }) => {
+const App: React.FC = () => {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <NavigationContainer>
+      <RootNavigator />
+    </NavigationContainer>
   )
 }
 
