@@ -1,4 +1,5 @@
 export const TABNAVIGATOR = {
+    TABNAVIGATOR: 'TABNAVIGATOR',
     HOME: 'Anasayfa',
     SEARCH: 'Aramam',
     FAVORITES: 'Favarilerim',

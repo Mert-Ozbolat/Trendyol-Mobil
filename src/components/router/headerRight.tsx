@@ -1,14 +1,28 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, View } from 'react-native'
 import React from 'react'
+import { Notification } from 'iconsax-react-native'
+import { Colors } from '../../theme/colors'
 
-const HeaderRight = () => {
+const HeaderRight: React.FC = () => {
     return (
-        <View>
-            <Text>HeaderRight</Text>
+        <View style={styles.container}>
+            <Pressable style={styles.button}>
+                <Notification size={30} color={Colors.BLACK} />
+            </Pressable>
         </View>
     )
 }
 
 export default HeaderRight
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginHorizontal: 10
+    },
+    button: {
+        marginRight: 5
+    },
+})

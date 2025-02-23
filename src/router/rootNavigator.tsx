@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabNavigator from './tabNavigator';
+import { TABNAVIGATOR } from '../utils/routes';
 
 
 const Stack = createNativeStackNavigator();
@@ -11,7 +12,7 @@ const RootNavigator: React.FC = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name='Tab' component={TabNavigator} />
+            <Stack.Screen name={TABNAVIGATOR.TABNAVIGATOR} component={TabNavigator} />
         </Stack.Navigator>
     )
 }
