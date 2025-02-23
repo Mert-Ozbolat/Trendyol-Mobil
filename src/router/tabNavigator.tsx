@@ -8,6 +8,7 @@ import Profile from '../screens/profile';
 import { TABNAVIGATOR } from '../utils/routes';
 import { Colors } from './../theme/colors';
 import TabIcon from '../components/router/tabIcon';
+import Cart from '../screens/cart';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,19 +16,21 @@ const Tab = createBottomTabNavigator();
 const TabNavigator: React.FC = () => {
     return (
         <Tab.Navigator
-            screenOptions={{
-                tabBarActiveTintColor: Colors.PRIMARY,
-                tabBarInactiveTintColor: Colors.GRAY,
-                tabBarIcon: ({ size, focused, color }) => {
-                    return (
-                        <TabIcon />
-                    )
+            screenOptions={({ route }) => (
+                {
+                    tabBarActiveTintColor: Colors.PRIMARY,
+                    tabBarInactiveTintColor: Colors.GRAY,
+                    tabBarIcon: ({ size, focused, color }) => {
+                        return (
+                            <TabIcon route={route} focused={focused} size={size} color={color} />
+                        )
+                    }
                 }
-            }}
-        >
+            )}>
             <Tab.Screen name={TABNAVIGATOR.HOME} component={Home} />
             <Tab.Screen name={TABNAVIGATOR.SEARCH} component={Search} />
             <Tab.Screen name={TABNAVIGATOR.FAVORITES} component={Favorites} />
+            <Tab.Screen name={TABNAVIGATOR.CART} component={Cart} />
             <Tab.Screen name={TABNAVIGATOR.PROFILE} component={Profile} />
         </Tab.Navigator>
     )
