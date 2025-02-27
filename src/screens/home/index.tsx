@@ -1,15 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { useEffect } from 'react';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { getRequest } from '../../service/verbs';
+import { PRODUCTS_URL } from '../../service/urls';
 
-const Home: React.FC = () => {
+const Home = () => {
+    useEffect(() => {
+        getRequest({}, PRODUCTS_URL.ALL_PRODUCTS)
+            .then(data => {
+                console.log(data.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
 
     return (
-        <View>
+        <SafeAreaView>
             <Text>Home</Text>
-        </View>
-    )
-}
-
-export default Home
-
-const styles = StyleSheet.create({})
+        </SafeAreaView>
+    );
+};
+export default Home;
+const styles = StyleSheet.create({});
