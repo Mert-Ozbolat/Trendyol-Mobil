@@ -3,9 +3,12 @@ import { Colors } from "../theme/colors";
 
 
 const defaultScreenStyle = StyleSheet.create({
-    container: {
+    safeAreaContainer: {
         flex: 1,
-        backgroundColor: Colors.WHITE
+        backgroundColor: Colors.WHITE,
+    },
+    container: {
+        padding: 10
     }
 });
 
