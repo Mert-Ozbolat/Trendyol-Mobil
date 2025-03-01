@@ -18,13 +18,17 @@ const BestSeller: React.FC = () => {
     }, []);
 
     return (
-        <View>
+        <View style={styles.container}>
             <WidgetHeader title="Çok Satan Ürünler" />
-            <FlatList data={bestSellerProducts} renderItem={({ item }) => <ProductItem product={item} />} />
+            <FlatList showsHorizontalScrollIndicator={false} horizontal data={bestSellerProducts} renderItem={({ item }) => <ProductItem product={item} />} />
         </View>
     );
 };
 
 export default BestSeller;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        marginVertical: 5
+    }
+});
