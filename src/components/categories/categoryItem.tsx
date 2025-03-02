@@ -2,6 +2,7 @@ import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { categoryItemProps } from '../../models/ui/categotyItemProps'
 import { Colors } from '../../theme/colors'
+import { height } from '../../utils/constants'
 
 const CategoryItem: React.FC<categoryItemProps> = ({ category }) => {
     return (
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         borderWidth: 0.5,
         borderRadius: 100,
-        borderColor: Colors.GRAY
+        borderColor: Colors.GRAY,
+        minHeight: height * 0.045
     }
 })

@@ -2,8 +2,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Star1 } from 'iconsax-react-native'
 import { Colors } from '../../theme/colors'
+import { RatingProps } from '../../models/ui/rateProps'
 
-const Rate: React.FC = ({ rating }) => {
+const Rate: React.FC<RatingProps> = ({ rating }) => {
 
     const fullStar = Math.floor(rating.rate)
     const halfStar = rating.rate % 1 >= 0.5

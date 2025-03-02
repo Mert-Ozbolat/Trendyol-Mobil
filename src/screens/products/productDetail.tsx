@@ -32,15 +32,15 @@ const ProductDetail: React.FC = ({ route }) => {
                         style={styles.image}
                     />
                     <Text style={styles.category}>{product.category}</Text>
-                    <Text style={styles.title}>{product.title}</Text>
-                    <Rate rating={product.rating} />
-                    <Text style={styles.description}>{product.description}</Text>
+                    <Text style={styles.title}>{product?.title}</Text>
+                    {product.rating && <Rate rating={product?.rating} />}
+                    <Text style={styles.description}>{product?.description}</Text>
                 </ScrollView>
             </View>
 
             <View style={styles.priceContainer}>
                 <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 15 }}>
-                    <Text style={styles.price}>{product.price} TL</Text>
+                    <Text style={styles.price}>{product?.price} TL</Text>
                     <Text style={styles.info}>Kargo Bedava</Text>
                 </View>
 

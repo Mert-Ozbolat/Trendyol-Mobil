@@ -1,10 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store'
+import ProductItem from '../../components/products/productItem'
+import { defaultScreenStyle } from '../../styles/defaultScreenStyle'
+import { getAllProducts } from '../../store/actions/productsActions'
+import Categories from '../../widgets/categories'
 
 const ProductList: React.FC = () => {
+
+    const { products } = useSelector((state: RootState) => state.products)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getAllProducts())
+    }, [])
+
     return (
-        <View>
-            <Text>ProductList</Text>
+        <View style={defaultScreenStyle.container}>
+            <Categories />
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ alignItems: 'center' }}
+                numColumns={2}
+                data={products}
+                renderItem={({ item }) => <ProductItem product={item} />}
+            />
         </View>
     )
 }
