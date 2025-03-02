@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: Colors.PRIMARY,
         marginVertical: 10,
-        fontWeight: '600'
+        fontWeight: '600',
+        textDecorationLine: 'underline'
     }
 })
