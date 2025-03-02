@@ -3,10 +3,17 @@ import React from 'react'
 import { ProductItemProps } from '../../models/ui/productItemProps'
 import { height, width } from '../../utils/constants'
 import { Colors } from '../../theme/colors'
+import { useNavigation } from '@react-navigation/native'
+import { PRODUCTSNAVIGATOR } from '../../utils/routes'
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
+
+    const navigation = useNavigation()
+
     return (
-        <Pressable style={styles.container}>
+        <Pressable
+            onPress={() => navigation.navigate(PRODUCTSNAVIGATOR.PRODUCTSDETAIL)}
+            style={styles.container}>
             <Image source={{ uri: product.image }} style={{ width: width * 0.25, height: height * 0.15, resizeMode: "contain", alignSelf: "center" }} />
             <Text numberOfLines={2} style={{ fontSize: 14, fontWeight: "bold", marginVertical: 5 }}>{product.title}</Text>
             <Text numberOfLines={2} style={{ fontSize: 14, marginVertical: 5, color: Colors.PRIMARY }}>{product.category}</Text>
