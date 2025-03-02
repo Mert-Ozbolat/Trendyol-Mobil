@@ -1,0 +1,28 @@
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { Colors } from '../../theme/colors'
+import { height } from '../../utils/constants'
+
+const Button: React.FC = props => {
+    return (
+        <TouchableOpacity {...props} style={styles.container}>
+            <Text style={styles.title}>Sepete Ekle</Text>
+        </TouchableOpacity>
+    )
+}
+
+export default Button
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.PRIMARY,
+        minHeight: height * 0.05,
+        borderRadius: 5
+    },
+    title: {
+        fontSize: 18,
+        color: Colors.WHITE
+    }
+})
