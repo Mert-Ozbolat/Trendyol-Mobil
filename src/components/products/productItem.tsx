@@ -12,7 +12,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
 
     return (
         <Pressable
-            onPress={() => navigation.navigate(PRODUCTSNAVIGATOR.PRODUCTSDETAIL)}
+            onPress={() => navigation.navigate(PRODUCTSNAVIGATOR.PRODUCTSDETAIL, { productId: product.id })}
             style={styles.container}>
             <Image source={{ uri: product.image }} style={{ width: width * 0.25, height: height * 0.15, resizeMode: "contain", alignSelf: "center" }} />
             <Text numberOfLines={2} style={{ fontSize: 14, fontWeight: "bold", marginVertical: 5 }}>{product.title}</Text>
