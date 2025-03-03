@@ -1,22 +1,21 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store'
-import ProductItem from '../../components/products/productItem'
-import { defaultScreenStyle } from '../../styles/defaultScreenStyle'
-import { getAllProducts } from '../../store/actions/productsActions'
-import Categories from '../../widgets/categories'
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { defaultScreenStyle } from '../../styles/defaultScreenStyle';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import ProductItem from '../../components/products/productItem';
+import { useEffect } from 'react';
+import { getAllProducts } from '../../store/actions/productsActions';
+import Categories from '../../widgets/categories';
 
 const ProductList: React.FC = () => {
-
-    const { products } = useSelector((state: RootState) => state.products)
-    const { selectedCategory } = useSelector((state: RootState) => state.categories)
-    const dispatch = useDispatch()
-
+    const { products } = useSelector((state: RootState) => state.products);
+    const { selectedCategory } = useSelector(
+        (state: RootState) => state.categories,
+    );
+    const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getAllProducts({ category: selectedCategory }))
-    }, [selectedCategory])
-
+        dispatch(getAllProducts({ category: selectedCategory }));
+    }, [selectedCategory]);
     return (
         <View style={defaultScreenStyle.container}>
             <Categories />
@@ -28,9 +27,7 @@ const ProductList: React.FC = () => {
                 renderItem={({ item }) => <ProductItem product={item} />}
             />
         </View>
-    )
-}
-
-export default ProductList
-
-const styles = StyleSheet.create({})
+    );
+};
+export default ProductList;
+const styles = StyleSheet.create({});

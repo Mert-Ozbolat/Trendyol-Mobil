@@ -1,37 +1,51 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getRequest } from "../../service/verbs";
-import { PRODUCTS_URL } from "../../service/urls";
-import { Params } from "../../models/data/productsState";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { PRODUCTS_URL } from '../../service/urls';
+import { getRequest } from '../../service/verbs';
+import { Params } from '../../models/data/productsState';
 
-
-const getAllProducts = createAsyncThunk('products/getAllProducts',
+const getAllProducts = createAsyncThunk(
+    'products/getAllProducts',
     async (params: object) => {
-        const productUrl = params.category == 'Tümü'
-            ? PRODUCTS_URL.ALL_PRODUCTS
-            : `${PRODUCTS_URL.CATEGORY_PRODUCTS}/${params.categoty}`
-        const response = await getRequest(params, productUrl)
-        return response.data
-    })
+        const producstUrl =
+            params.category == 'Tümü'
+                ? PRODUCTS_URL.ALL_PRODUCTS
+                : `${PRODUCTS_URL.CATEGORY_PRODUCTS}/${params.category}`;
+        const response = await getRequest(params, producstUrl);
+        return response.data;
+    },
+);
 
-const getBestSellerProducts = createAsyncThunk('products/getBestSellerProducts',
+
+const getBestSellerProducts = createAsyncThunk(
+    'products/getBestSellerProducts',
     async (params: object) => {
-        const response = await getRequest(params, PRODUCTS_URL.BEST_SELLER_PRODUCTS)
-        return response.data
-    })
+        const response = await getRequest(
+            params,
+            PRODUCTS_URL.BEST_SELLER_PRODUCTS,
+        );
+        return response.data;
+    },
+);
 
-const getPopularProducts = createAsyncThunk('products/getPopularProducts',
+const getPopularProducts = createAsyncThunk(
+    'products/getPopularProducts',
     async (params: object) => {
-        const response = await getRequest(params, PRODUCTS_URL.POPULAR_PRODUCTS)
-        return response.data
-    })
+        const response = await getRequest(params, PRODUCTS_URL.POPULAR_PRODUCTS);
+        return response.data;
+    },
+);
 
-
-
-const getProductDetail = createAsyncThunk('products/getProductDetail',
+const getProductDetail = createAsyncThunk(
+    'products/getProductDetail',
     async (params: Params) => {
-        const productUrl = `${PRODUCTS_URL.ALL_PRODUCTS}/${params.id}`
-        const response = await getRequest(params, productUrl)
-        return response.data
-    })
-
-export { getBestSellerProducts, getPopularProducts, getProductDetail, getAllProducts }
+        const productUrl = `${PRODUCTS_URL.ALL_PRODUCTS}/${params.id}`;
+        const response = await getRequest(params, productUrl);
+        return response.data;
+    },
+);
+export {
+    getBestSellerProducts,
+    getPopularProducts,
+    getProductDetail,
+    getAllProducts,
+};

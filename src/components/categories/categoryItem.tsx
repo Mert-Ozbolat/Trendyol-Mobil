@@ -29,14 +29,13 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 10,
+        margin: 5,
         marginVertical: 10,
         padding: 10,
         paddingHorizontal: 15,
         borderWidth: 0.5,
         borderRadius: 100,
         borderColor: Colors.GRAY,
-        minHeight: height * 0.045
     },
     selectedContainer: {
         backgroundColor: Colors.PRIMARY,
