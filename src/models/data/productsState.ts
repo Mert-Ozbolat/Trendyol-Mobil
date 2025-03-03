@@ -17,7 +17,9 @@ interface ProductsState {
     products: Product[];
     bestSellerProducts: Product[];
     popularProducts: Product[];
-    product: Product
+    product: Product,
+    pending: boolean,
+    error: any
 }
 
 
