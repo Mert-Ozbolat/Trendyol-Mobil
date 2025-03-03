@@ -1,13 +1,24 @@
-import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text } from 'react-native'
 import React from 'react'
 import { categoryItemProps } from '../../models/ui/categotyItemProps'
 import { Colors } from '../../theme/colors'
 import { height } from '../../utils/constants'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store'
+import { setCategory } from '../../store/slice/categoriesSlice'
+
 
 const CategoryItem: React.FC<categoryItemProps> = ({ category }) => {
+
+
+    const { selectedCategory } = useSelector((state: RootState) => state.categories)
+    const dispatch = useDispatch()
+
     return (
-        <Pressable style={styles.container}>
-            <Text style={{ fontSize: 18 }}>{category}</Text>
+        <Pressable
+            onPress={() => dispatch(setCategory(category))}
+            style={[styles.container, selectedCategory == category ? styles.selectedContainer : styles.unselectedContainer]}>
+            <Text style={[styles.title, selectedCategory == category ? styles.selectedTitle : styles.unSelectedTitle]}>{category}</Text>
         </Pressable>
     )
 }
@@ -26,5 +37,21 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         borderColor: Colors.GRAY,
         minHeight: height * 0.045
+    },
+    selectedContainer: {
+        backgroundColor: Colors.PRIMARY,
+    },
+    unselectedContainer: {
+        backgroundColor: Colors.WHITE,
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: '600'
+    },
+    selectedTitle: {
+        color: Colors.WHITE
+    },
+    unSelectedTitle: {
+        color: Colors.BLACK
     }
 })

@@ -2,8 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { CategoriesState } from "../../models/data/categoriesState";
 import { getAllCategories } from "../actions/categoriesAction";
 
+
 const initialState: CategoriesState = {
     categories: [],
+    selectedCategory: 'Tümü',
     pending: false,
     error: null
 }
@@ -11,7 +13,11 @@ const initialState: CategoriesState = {
 export const categoriesSlice = createSlice({
     name: 'categories',
     initialState,
-    reducers: {},
+    reducers: {
+        setCategory: (state, action) => {
+            state.selectedCategory = action.payload
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(getAllCategories.pending, state => {
@@ -28,4 +34,5 @@ export const categoriesSlice = createSlice({
     }
 })
 
+export const { setCategory } = categoriesSlice.actions
 export default categoriesSlice.reducer

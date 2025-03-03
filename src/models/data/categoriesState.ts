@@ -1,6 +1,7 @@
 interface CategoriesState {
     categories: string[];
-    pending: boolean,
+    selectedCategory: string
+    pending: boolean
     error: any
 }
 
