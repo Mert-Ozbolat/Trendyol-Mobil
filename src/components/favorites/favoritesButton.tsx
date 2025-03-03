@@ -8,7 +8,10 @@ import { ProductItemProps } from '../../models/ui/productItemProps'
 const FavoritesButton: React.FC<ProductItemProps> = ({ product }) => {
     return (
         <TouchableOpacity style={styles.container}>
-            <Heart size={22} color={Colors.BLACK} />
+            {
+                product.isFavorite ? <Heart size={22} color={Colors.BLACK} variant="Bold" />
+                    : <Heart size={22} color={Colors.BLACK} />
+            }
         </TouchableOpacity>
     )
 }

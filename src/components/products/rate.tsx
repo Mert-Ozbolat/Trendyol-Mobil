@@ -4,7 +4,7 @@ import { Star1 } from 'iconsax-react-native'
 import { Colors } from '../../theme/colors'
 import { RatingProps } from '../../models/ui/rateProps'
 
-const Rate: React.FC<RatingProps> = ({ rating }) => {
+const Rate: React.FC<RatingProps> = ({ rating, size }) => {
 
     const fullStar = Math.floor(rating.rate)
     const halfStar = rating.rate % 1 >= 0.5
@@ -13,22 +13,24 @@ const Rate: React.FC<RatingProps> = ({ rating }) => {
     return (
         <View style={styles.container}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={styles.rate}>{rating.rate}</Text>
+                <Text style={[styles.rate, { fontSize: size == 'large' ? 18 : 14 }]}>{rating.rate}</Text>
                 {
                     Array(fullStar)
                         .fill(null)
                         .map((item, index) => (
-                            <Star1 key={index} size="20" color={Colors.PRIMARY} variant="Bold" />
+                            <Star1 key={index} size={size === 'small' ? 15 : 20} color={Colors.PRIMARY} variant="Bold" />
                         ))
                 }
                 {
-                    halfStar && <Star1 size="20" color={Colors.PRIMARY} variant="Bulk" />
+                    halfStar && <Star1 size={size === 'small' ? 15 : 20} color={Colors.PRIMARY} variant="Bulk" />
                 }
             </View>
 
-            <View style={{ justifyContent: 'center' }}>
-                <Text style={styles.rate}>|{rating.count} Değerlendirme</Text>
-            </View>
+            {
+                size === 'large' && <View style={{ justifyContent: 'center' }}>
+                    <Text style={styles.rate}>|{rating.count} Değerlendirme</Text>
+                </View>
+            }
 
         </View>
     )
@@ -44,7 +46,6 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     rate: {
-        fontSize: 20,
         fontWeight: 'bold'
     }
 })

@@ -6,6 +6,8 @@ import { Colors } from '../../theme/colors'
 import { useNavigation } from '@react-navigation/native'
 import { PRODUCTSNAVIGATOR } from '../../utils/routes'
 import FavoritesButton from '../favorites/favoritesButton'
+import Rate from './rate'
+import FreeCargo from '../badges/freeCargo'
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
 
@@ -15,11 +17,13 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         <Pressable
             onPress={() => navigation.navigate(PRODUCTSNAVIGATOR.PRODUCTSDETAIL, { productId: product.id })}
             style={styles.container}>
-            <FavoritesButton />
+            <FavoritesButton product={product} />
             <Image source={{ uri: product.image }} style={{ width: width * 0.25, height: height * 0.15, resizeMode: "contain", alignSelf: "center" }} />
             <Text numberOfLines={2} style={{ fontSize: 14, fontWeight: "bold", marginVertical: 5 }}>{product.title}</Text>
             <Text numberOfLines={2} style={{ fontSize: 14, marginVertical: 5, color: Colors.PRIMARY }}>{product.category}</Text>
+            {product.rating && <Rate size='small' rating={product?.rating} />}
             <Text numberOfLines={2} style={{ fontSize: 16, fontWeight: "bold", marginVertical: 5, color: Colors.PRIMARY }}>{product.price} TL</Text>
+            <FreeCargo />
         </Pressable>
     )
 }

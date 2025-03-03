@@ -35,7 +35,7 @@ const ProductDetail: React.FC = ({ route }) => {
                     />
                     <Text style={styles.category}>{product.category}</Text>
                     <Text style={styles.title}>{product?.title}</Text>
-                    {product.rating && <Rate rating={product?.rating} />}
+                    {product.rating && <Rate size='large' rating={product?.rating} />}
                     <Text style={styles.description}>{product?.description}</Text>
                 </ScrollView>
             </View>
