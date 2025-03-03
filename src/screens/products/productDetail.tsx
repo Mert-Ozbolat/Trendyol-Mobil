@@ -9,6 +9,7 @@ import { defaultScreenStyle } from '../../styles/defaultScreenStyle'
 import { Colors } from '../../theme/colors'
 import Button from '../../components/ui/button'
 import Rate from '../../components/products/rate'
+import FavoritesButton from '../../components/favorites/favoritesButton'
 
 const ProductDetail: React.FC = ({ route }) => {
 
@@ -23,6 +24,7 @@ const ProductDetail: React.FC = ({ route }) => {
 
     return (
         <SafeAreaView style={defaultScreenStyle.container}>
+            <FavoritesButton product={product} />
             <View style={{ flex: 1 }}>
                 <ScrollView
                     showsVerticalScrollIndicator={false}
