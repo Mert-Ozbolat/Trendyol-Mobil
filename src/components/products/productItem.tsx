@@ -8,6 +8,7 @@ import { PRODUCTSNAVIGATOR } from '../../utils/routes'
 import FavoritesButton from '../favorites/favoritesButton'
 import Rate from './rate'
 import FreeCargo from '../badges/freeCargo'
+import Discount from '../badges/discount'
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
 
@@ -23,7 +24,14 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             <Text numberOfLines={2} style={{ fontSize: 14, marginVertical: 5, color: Colors.PRIMARY }}>{product.category}</Text>
             {product.rating && <Rate size='small' rating={product?.rating} />}
             <Text numberOfLines={2} style={{ fontSize: 16, fontWeight: "bold", marginVertical: 5, color: Colors.PRIMARY }}>{product.price} TL</Text>
-            <FreeCargo />
+
+
+            <View style={{ flexDirection: 'row' }}>
+                <FreeCargo />
+                <Discount />
+            </View>
+
+
         </Pressable>
     )
 }

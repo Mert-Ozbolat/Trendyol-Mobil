@@ -2,15 +2,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../theme/colors';
 import { Box } from 'iconsax-react-native';
 
-const FreeCargo: React.FC = () => {
+const Discount: React.FC = () => {
     return (
         <View style={styles.container}>
-            <Box size="22" color={Colors.GRAY} />
-            <Text style={styles.text}>Kargo Bedava</Text>
+            <Box size="22" color={Colors.GREEN} />
+            <Text style={styles.text}>2. Ürün İndirim</Text>
         </View>
     );
 };
-export default FreeCargo;
+export default Discount;
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
