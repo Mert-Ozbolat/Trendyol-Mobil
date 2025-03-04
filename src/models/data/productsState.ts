@@ -9,9 +9,10 @@ interface Product {
     price: number;
     category: string;
     description: string;
-    image: string
+    image: string;
     rating: Rating;
-    isFavorite: boolean
+    isFavorite: boolean;
+    quantity: 0;
 }
 
 interface ProductsState {
