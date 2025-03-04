@@ -9,6 +9,7 @@ import FavoritesButton from '../favorites/favoritesButton'
 import Rate from './rate'
 import FreeCargo from '../badges/freeCargo'
 import Discount from '../badges/discount'
+import Delivery from '../badges/delivery'
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
 
@@ -29,6 +30,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             <View style={{ flexDirection: 'row' }}>
                 <FreeCargo />
                 <Discount />
+                <Delivery />
             </View>
 
 
