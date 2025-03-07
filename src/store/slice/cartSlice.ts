@@ -14,20 +14,25 @@ export const cartSlice = createSlice({
             const exitingProduct = state.cart.find(item => item.id === product.id);
             if (exitingProduct) exitingProduct.quantity += 1;
             else state.cart.push({ ...product, quantity: 1 });
-
             state.totalPrice = state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
         },
-        updateQuantity: (state, action) => {
-            const { id, quantity } = action.payload
+        decreaseQuantity: (state, action) => {
+            const { id } = action.payload
             const item = state.cart.find(item => item.id === id)
+            if (item && item.quantity > 0) (item.quantity -= 1)
+            state.totalPrice = state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+        },
 
-            if (item) item.quantity = quantity > 0 ? quantity : 1
-
+        increaseQuantity: (state, action) => {
+            const { id } = action.payload
+            const item = state.cart.find(item => item.id === id)
+            if (item) (item.quantity += 1)
+            if (item?.quantity === 0) state.cart = []
             state.totalPrice = state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
         }
     },
 
 })
 
-export const { addCart, updateQuantity } = cartSlice.actions
+export const { addCart, increaseQuantity, decreaseQuantity } = cartSlice.actions
 export default cartSlice.reducer
