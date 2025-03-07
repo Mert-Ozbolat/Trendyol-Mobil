@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { CartItemProps } from '../../models/ui/cartItemProps'
 import { height, width } from '../../utils/constants'
@@ -9,16 +9,22 @@ import Discount from '../badges/discount'
 import { useNavigation } from '@react-navigation/native'
 import { PRODUCTSNAVIGATOR } from '../../utils/routes'
 import Counter from './counter'
+import { Trash } from 'iconsax-react-native'
+import { useDispatch } from 'react-redux'
+import { removeFromCart } from '../../store/slice/cartSlice'
 
 const CartItem: React.FC<CartItemProps> = ({ product }) => {
     const navigation = useNavigation()
+    const dispatch = useDispatch()
     return (
-        <Pressable onPress={() => navigation.navigate(PRODUCTSNAVIGATOR.PRODUCTSDETAIL, { productId: product.id })} style={styles.container}>
+        <Pressable onPress={() => navigation.navigate(PRODUCTSNAVIGATOR.PRODUCTSDETAIL, { productId: product.id })}
+            style={styles.container}>
 
             <View style={{
                 justifyContent: "center", alignItems: "center",
 
             }}>
+
                 <Image source={{ uri: product.image }} style={styles.image} />
 
             </View>
@@ -44,6 +50,13 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
                     </View>
 
                 </View>
+
+                <TouchableOpacity
+                    onPress={() => dispatch(removeFromCart(product.id))}
+                    style={{ alignSelf: 'flex-end', marginVertical: 5 }}>
+                    <Trash size="32" color="#FF8A65" />
+                </TouchableOpacity>
+
             </View>
         </Pressable >
     )
