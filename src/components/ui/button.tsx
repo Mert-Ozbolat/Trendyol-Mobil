@@ -1,10 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Colors } from '../../theme/colors';
 import { height } from '../../utils/constants';
-const Button: React.FC<Props> = props => {
+import { ButtonProps } from '../../models/ui/buttonProps';
+const Button: React.FC<ButtonProps> = props => {
+
+    const { title } = props
+
     return (
         <TouchableOpacity {...props} style={styles.container}>
-            <Text style={styles.title}>Sepete Ekle</Text>
+            <Text style={styles.title}>{title}</Text>
         </TouchableOpacity>
     );
 };

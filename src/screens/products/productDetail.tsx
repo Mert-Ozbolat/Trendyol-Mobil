@@ -50,7 +50,7 @@ const ProductDetail: React.FC = ({ route }) => {
                     <Text style={styles.info}>Kargo Bedava</Text>
                 </View>
                 <View style={{ flex: 2, justifyContent: 'center' }}>
-                    <Button onPress={() => dispatch(addCart(product))} />
+                    <Button title='Sepete Ekle' onPress={() => dispatch(addCart(product))} />
                 </View>
             </View>
         </View>
