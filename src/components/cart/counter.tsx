@@ -3,12 +3,20 @@ import React from 'react'
 import { CounterProps } from '../../models/ui/counterProps'
 import { Colors } from '../../theme/colors'
 import { Add, Minus } from 'iconsax-react-native'
+import { useDispatch } from 'react-redux'
+import { updateQuantity } from '../../store/slice/cartSlice'
 
-const Counter: React.FC<CounterProps> = ({ quantity }) => {
+const Counter: React.FC<CounterProps> = ({ quantity, product }) => {
+
+    const dispatch = useDispatch()
+
+
     return (
         <View style={styles.container}>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => dispatch(updateQuantity(product))}
+            >
                 <Minus size="32" color="#FF8A65" />
             </TouchableOpacity>
 
@@ -16,7 +24,9 @@ const Counter: React.FC<CounterProps> = ({ quantity }) => {
                 <Text style={styles.quantity}>{quantity}</Text>
             </View>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => dispatch(updateQuantity(product))}
+            >
                 <Add size="32" color="#FF8A65" />
             </TouchableOpacity>
         </View>

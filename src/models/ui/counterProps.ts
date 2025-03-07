@@ -1,5 +1,8 @@
+import { Product } from "../data/productsState"
+
 interface CounterProps {
-    quantity: number
+    quantity: number,
+    product: Product
 }
 
 export type { CounterProps }
