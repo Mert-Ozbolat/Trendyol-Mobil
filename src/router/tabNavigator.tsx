@@ -9,11 +9,16 @@ import { Colors } from './../theme/colors';
 import TabIcon from '../components/router/tabIcon';
 import Cart from '../screens/cart';
 import HeaderRight from '../components/router/headerRight';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 const Tab = createBottomTabNavigator();
 
 
 const TabNavigator: React.FC = () => {
+
+    const { cart, totalPrice } = useSelector((state: RootState) => state.cart);
+
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -36,7 +41,7 @@ const TabNavigator: React.FC = () => {
             <Tab.Screen name={TABNAVIGATOR.HOME} component={Home} />
             <Tab.Screen name={TABNAVIGATOR.SEARCH} component={Search} />
             <Tab.Screen name={TABNAVIGATOR.FAVORITES} component={Favorites} />
-            <Tab.Screen options={{ tabBarBadge: 0 }} name={TABNAVIGATOR.CART} component={Cart} />
+            <Tab.Screen options={{ tabBarBadge: cart?.length }} name={TABNAVIGATOR.CART} component={Cart} />
             <Tab.Screen name={TABNAVIGATOR.PROFILE} component={Profile} />
         </Tab.Navigator>
     )

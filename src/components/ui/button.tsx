@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: Colors.PRIMARY,
-        minHeight: height * 0.05,
+        minHeight: height * 0.047,
         borderRadius: 5,
     },
     title: {
