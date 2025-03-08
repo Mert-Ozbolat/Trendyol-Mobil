@@ -1,7 +1,7 @@
-import { ProductsState } from "./productsState";
+import { Product } from "./productsState";
 
 interface FavoriteState {
-    favorites: ProductsState[];
+    favorites: Product[];
     pending: boolean;
     error: any
 }

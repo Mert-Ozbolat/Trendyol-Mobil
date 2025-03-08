@@ -10,28 +10,20 @@ export const favoriteSlice = createSlice({
     name: 'favorites',
     initialState,
     reducers: {
-        addCart: (state, action) => {
+        addFavorite: (state, action) => {
             const product = action.payload;
-            const exitingProduct = state.cart.find(item => item.id === product.id);
-            if (exitingProduct) exitingProduct.quantity += 1;
-            else state.cart.push({ ...product, quantity: 1 });
+            const exitingProduct = state.favorites.find(item => item.id === product.id);
 
-            state.totalPrice = state.cart.reduce(
-                (sum, item) => sum + item.price * item.quantity,
-                0,
-            );
-        },
-
-        removeFromCart: (state, action) => {
-            const productId = action.payload;
-            state.cart = state.cart.filter(item => item.id !== productId);
-            state.totalPrice = state.cart.reduce(
-                (sum, item) => sum + item.price * item.quantity,
-                0,
-            );
+            if (exitingProduct) {
+                exitingProduct.isFavorite = false;
+                state.favorites = state.favorites.filter(
+                    item => item.id !== action.payload.id,
+                );
+            } else {
+                state.favorites.push({ ...product, isFavorite: true });
+            }
         },
     },
 });
-
-export const { addCart, removeFromCart } = favoriteSlice.actions;
+export const { addFavorite } = favoriteSlice.actions;
 export default favoriteSlice.reducer;
