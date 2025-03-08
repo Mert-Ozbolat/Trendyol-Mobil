@@ -1,13 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Heart } from 'iconsax-react-native'
 import { Colors } from '../../theme/colors'
 import { ProductItemProps } from '../../models/ui/productItemProps'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 const FavoritesButton: React.FC<ProductItemProps> = ({ product }) => {
+
+    const { isLogin } = useSelector((state: RootState) => state.auth)
+
+    const checklogin = () => {
+        if (!isLogin) {
+            Alert.alert('Please login for add to favorites')
+        }
+    }
+
+
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity
+            onPress={checklogin}
+            style={styles.container}>
             {
                 product.isFavorite ? <Heart size={22} color={Colors.BLACK} variant="Bold" />
                     : <Heart size={22} color={Colors.BLACK} />
