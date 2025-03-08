@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { postRequest } from '../../service/verbs';
 import { AUTH_URLS } from '../../service/urls';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const userLogin = createAsyncThunk('auth/userLogin', async (params: object) => {
     try {
         const response = await postRequest(params, AUTH_URLS.LOGIN);
@@ -13,6 +14,7 @@ const userLogin = createAsyncThunk('auth/userLogin', async (params: object) => {
         return error;
     }
 });
+
 const userLogOut = createAsyncThunk('auth/userLogOut', async () => {
     try {
         await AsyncStorage.removeItem('token');

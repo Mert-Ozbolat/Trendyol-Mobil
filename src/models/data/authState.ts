@@ -9,6 +9,7 @@ interface AuthState {
     pending: boolean;
     error: any;
     isLogin: boolean
+    token: string | null
 }
 
 export type { AuthState }
