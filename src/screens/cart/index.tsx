@@ -8,7 +8,9 @@ import { Colors } from '../../theme/colors';
 import { height, width } from '../../utils/constants';
 
 const Cart: React.FC = () => {
+
     const { cart, totalPrice } = useSelector((state: RootState) => state.cart);
+    const { isLogin } = useSelector((state: RootState) => state.auth)
 
     return (
         <SafeAreaView style={defaultScreenStyle.safeAreaContainer}>
