@@ -1,50 +1,72 @@
-import { Alert, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { TouchableOpacity } from 'react-native'
-import { Heart } from 'iconsax-react-native'
-import { Colors } from '../../theme/colors'
-import { ProductItemProps } from '../../models/ui/productItemProps'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
+import React from 'react';
+import { TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Colors } from '../../theme/colors';
+import { width } from '../../utils/constants';
+import { ProductItemProps } from '../../models/ui/productItemProps';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { AUTHNAVIGATOR } from '../../utils/routes';
+// import { addFavorite } from '../../store/slice/favoriteSlice';
+// import { addFavoriteOther } from '../../store/slice/productSlice';
+import { Heart } from 'iconsax-react-native';
 
 const FavoritesButton: React.FC<ProductItemProps> = ({ product }) => {
 
-    const { isLogin } = useSelector((state: RootState) => state.auth)
+    const { isLogin } = useSelector((state: RootState) => state.auth);
+    const navigation = useNavigation();
+    const dispatch = useDispatch<AppDispatch>();
 
     const checklogin = () => {
         if (!isLogin) {
-            Alert.alert('Please login for add to favorites')
-        }
-    }
+            Alert.alert(
+                'Giriş Yap',
+                'Lütfen favorilere eklemeden önce giriş yapınız',
+                [
+                    {
+                        text: 'İptal',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel',
+                    },
+                    {
+                        text: 'Giriş Yap',
+                        onPress: () => navigation.navigate(AUTHNAVIGATOR.LOGIN),
+                    },
+                ],
+            );
+            // } else {
+            //     dispatch(addFavorite(product));
+            //     dispatch(addFavoriteOther(product));
+            // }
+        };
+        return (
+            <TouchableOpacity onPress={checklogin} style={styles.container}>
+                <Heart size="32" color="#FF8A65" />
+            </TouchableOpacity>
+        );
+    };
 
+    const styles = StyleSheet.create({
+        container: {
+            position: 'absolute',
+            width: width * 0.072,
+            height: width * 0.072,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 100,
+            right: 5,
+            top: 5,
+            shadowColor: '#000',
+            shadowOffset: {
+                width: 0,
+                height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
 
-    return (
-        <TouchableOpacity
-            onPress={checklogin}
-            style={styles.container}>
-            {
-                product.isFavorite ? <Heart size={22} color={Colors.BLACK} variant="Bold" />
-                    : <Heart size={22} color={Colors.BLACK} />
-            }
-        </TouchableOpacity>
-    )
-}
-
-export default FavoritesButton
-
-const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        right: 10,
-        top: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
+            elevation: 5,
+            backgroundColor: Colors.WHITE,
         },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-
-        elevation: 7,
-    },
-})
+    });
+}
+export default FavoritesButton;

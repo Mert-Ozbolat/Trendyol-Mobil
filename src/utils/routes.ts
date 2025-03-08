@@ -12,3 +12,8 @@ export const PRODUCTSNAVIGATOR = {
     PRODUCTSLIST: 'Tüm Ürünler',
     PRODUCTSDETAIL: 'Ürün Detayı',
 }
+
+export const AUTHNAVIGATOR = {
+    LOGIN: 'Giriş Yap',
+    REGISTER: 'Kayıt Ol'
+}
