@@ -1,16 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
+import { getUserInfo } from '../../store/actions/userAction'
+import Avatar from '../../components/user/avatar'
 
 const Profile = () => {
 
-    const { token } = useSelector((state: RootState) => state.auth)
+    const dispatch = useDispatch()
+    const { user } = useSelector((state: RootState) => state.user)
+
+    useEffect(() => {
+        dispatch(getUserInfo({ id: 1 }))
+    }, [])
 
     return (
-        <View style={styles.container}>
-            <Text style={{ fontSize: 16 }}>{token}</Text>
-        </View>
+        <ScrollView style={styles.container}>
+            <Avatar />
+            <Text>{ }</Text>
+        </ScrollView>
     )
 }
 
