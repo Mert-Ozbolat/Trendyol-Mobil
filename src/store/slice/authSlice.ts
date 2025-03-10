@@ -1,44 +1,45 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { AuthState } from "../../models/data/authState";
-import { userLogin } from "../actions/authAction";
-
+import { createSlice } from '@reduxjs/toolkit';
+import { AuthState } from '../../models/data/authState';
+import { userLogin, userLogOut } from '../actions/authAction';
 
 const initialState: AuthState = {
     isLogin: false,
     user: null,
     pending: false,
     error: null,
-    token: null
-}
-
+    token: null,
+};
 export const authSlice = createSlice({
-    name: 'categories',
+    name: 'auth',
     initialState,
     reducers: {
         checkUser: (state, action) => {
             if (action?.payload) {
-                state.isLogin = true
-                state.token = action.payload
+                state.isLogin = true;
+                state.token = action.payload;
             }
-        }
+        },
     },
     extraReducers: builder => {
         builder
             .addCase(userLogin.pending, state => {
-                state.pending = true
+                state.pending = true;
             })
             .addCase(userLogin.fulfilled, (state, action) => {
                 state.pending = false;
-                state.isLogin = true
-                state.token = action.payload.token
+                state.isLogin = true;
+                state.token = action.payload.token;
             })
             .addCase(userLogin.rejected, (state, action) => {
-                state.pending = false
-                state.error = action.error
-                state.isLogin = false
+                state.pending = false;
+                state.error = action.error;
+                state.isLogin = false;
             })
-    }
-})
-
-export const { checkUser } = authSlice.actions
-export default authSlice.reducer
+            .addCase(userLogOut.fulfilled, (state, action) => {
+                state.isLogin = false;
+                state.token = null;
+            });
+    },
+});
+export const { checkUser } = authSlice.actions;
+export default authSlice.reducer;
