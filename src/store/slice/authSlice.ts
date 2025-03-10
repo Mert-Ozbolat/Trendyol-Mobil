@@ -14,7 +14,13 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
     name: 'categories',
     initialState,
-    reducers: {},
+    reducers: {
+        checkUser: (state, action) => {
+            if (action?.payload) {
+                state.isLogin = true
+            }
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(userLogin.pending, state => {
@@ -33,4 +39,5 @@ export const authSlice = createSlice({
     }
 })
 
+export const { checkUser } = authSlice.actions
 export default authSlice.reducer
